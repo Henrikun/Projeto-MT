@@ -65,3 +65,6 @@ for(i in seq(from=1, to= length(tab$Valor), by=5)){
   print(i)
 }
 
+require(sidrar)
+tab5457_Acorizal = get_sidra(api='/t/5457/p/last/n6/5100102/c782/allxt')
+tab5457_Acorizal = tab5457_Acorizal[complete.cases(tab5457_Acorizal), ]

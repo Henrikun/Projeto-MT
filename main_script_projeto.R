@@ -19,6 +19,8 @@ require(sidrar)
 # Baixar a tabela lavouras temporarias cultivadas em Acorizal
 lav.temporaria_Acorizal = get_sidra(api='/t/1612/p/last/n6/5100102/c81/allxt')
 
+# tab5457_Acorizal = get_sidra(api='/t/5457/p/last/n6/5100102/c782/allxt')
+
 # linha de codigo para remover colunas indesejadas
 lav.temporaria_Acorizal <- lav.temporaria_Acorizal[,-c(1,3,4,7,9)]
 
