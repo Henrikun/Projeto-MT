@@ -68,3 +68,49 @@ for(i in seq(from=1, to= length(tab$Valor), by=5)){
 require(sidrar)
 tab5457_Acorizal = get_sidra(api='/t/5457/p/last/n6/5100102/c782/allxt')
 tab5457_Acorizal = tab5457_Acorizal[complete.cases(tab5457_Acorizal), ]
+
+tab5457_Acorizal = get_sidra(api='/t/5457/p/last/n6/5100102/c782/allxt')
+
+
+attach(municipios_mt)
+
+require(sidrar)
+tab793_51 = get_sidra(api = "/t/793/p/last/n6/all")
+attach(tab793_51)
+dados = c(municipios_mt, tab793_51)
+
+require(tidyverse)
+tab = select(dados, dados[["Município (Código)"]]==dados[["Código"]] )
+tab1 = tab793_51 %>% filter(tab793_51[,3]==x)
+resultado <- tab793_51 %>% group_by(tab793_51[,3]=="MT") 
+resultado
+
+
+
+df1 <- data.frame(x=municipios_mt$Código)
+df2 <- data.frame(y=tab793_51)
+which( df1$x %in% df2$y.Município..Código. )
+table(df1[ which( df1$x %in% df2$y ), "x"])
+tt <- subset(tab793_51, `Município (Código)` %in% municipios_mt$Código)
+library(dplyr)
+tt2 <- tab793_51 %>%
+  filter(`Município (Código)` %in% municipios_mt$Código)
+
+tab = municipios_mt
+tab[,4:5] <- c(tt2[,2], tt2[,9])
+names(tab)[4:5] <- c(names(tt2)[2], tt2[1,6])
+
+
+require(sidrar)
+tab200 = get_sidra(api = "/t/200/p/last/n6/all")
+
+attach(tab200)
+
+library(dplyr)
+tt2 <- tab200 %>%
+  filter(tab200$`Município (Código)` %in% municipios_mt$Código)
+
+tab = municipios_mt
+tab[,4:5] <- c(tt2[,2], tt2[,15])
+names(tab)[4:5] <- c(names(tt2)[2], tt2[1,6])
+
