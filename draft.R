@@ -114,3 +114,42 @@ tab = municipios_mt
 tab[,4:5] <- c(tt2[,2], tt2[,15])
 names(tab)[4:5] <- c(names(tt2)[2], tt2[1,6])
 
+# populção estimada 6579
+tab6579 = get_sidra(api = "/t/6579/p/2011-2017/n6/all")
+tab6579_2 = get_sidra(api = "/t/6579/p/all/n6/all")
+
+
+tt3 <- tab6579 %>% 
+  filter(tab6579$`Município (Código)` %in% municipios_mt$Código)
+
+tt4 <- tt3 %>% 
+  filter(tt3$`Município (Código)` %in% municipios_mt[1,1])
+
+
+
+tab6579_2 = get_sidra(api = "/t/6579/p/all/n6/all")
+
+pop_est2001_2017 <- tab6579_2 %>% 
+  filter(tab6579_2$`Município (Código)` %in% municipios_mt$Código)
+
+pop_est2001_2017 <- pop_est2001_2017[,-c(1,5,6,7,8)]
+names(pop_est2001_2017)[2] <- "Código"
+pop_est2001_2017 <- arrange(pop_est2001_2017, Código)
+
+pop_est2001_2017_5100102 <- pop_est2001_2017 %>% 
+  filter(pop_est2001_2017$Código %in% municipios_mt[1,1])
+
+pop_est_names <- paste0('Populção Estimada ', pop_est2001_2017_5100102$Ano)
+
+# "Mutating" joins add variables to the LHS
+a <- municipios_mt %>% inner_join(pop_est2001_2017, by = "Código")
+b <- municipios_mt %>% left_join(pop_est2001_2017, by = "Código")
+# Use a named `by` if the join variables have different names
+h <- municipios_mt %>% full_join(pop_est2001_2017, by = c("Código" = "Código"))
+# Note that only the key from the LHS is kept
+
+dados <- arrange(pop_est2001_2017, Código)
+
+
+
+
