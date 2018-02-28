@@ -1,35 +1,21 @@
 ###############################################
-
 #                                             #
-
 #   Pasta do projeto no Github                #
-
 #   https://github.com/Henrikun/Projeto-MT    #
-
 #                                             #
-
 #   Script ideializado e estruturado por:     #
-
 #   Henrique C. Costa                         #
-
 #   Correção e apoio: Roney Fraga.            #
-
 #                                             #
-
 ###############################################
 
 
 
 #**********************************************
-
 #  Instalação dos pacotes necessários  
-
 #                                            
-
 # install.packages('tidyverse')
-
 # install.packages('repmis')
-
 # install.packages('sidrar')
 
 require(repmis)
